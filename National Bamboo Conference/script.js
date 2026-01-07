@@ -119,5 +119,49 @@ window.onclick = function(event) {
     if (event.target.classList.contains('modal-overlay')) event.target.style.display = "none";
 
 }
+// 6. TEASER VIDEO LOGIC
+window.addEventListener('load', () => {
+    // Check if user has already seen the video in this session (optional)
+    // Remove the if-statement if you want it to show EVERY time
+    if (!sessionStorage.getItem('videoSeen')) {
+        setTimeout(() => {
+            const videoModal = document.getElementById('video-modal');
+            if (videoModal) {
+                videoModal.style.display = 'flex';
+            }
+        }, 1000); // 1 second delay before popup
+        sessionStorage.setItem('videoSeen', 'true');
+    }
+});
+
+function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const iframe = document.getElementById('teaser-iframe');
+    
+    if (modal) {
+        modal.style.display = 'none';
+        
+        // Stop YouTube video playback by resetting the src attribute
+        if (iframe) {
+            const iframeSrc = iframe.src;
+            iframe.src = iframeSrc; 
+        }
+    }
+}
+
+// Update existing window.onclick to include closing video modal on background click
+const existingWindowOnClick = window.onclick;
+window.onclick = function(event) {
+    // Run existing logic
+    if (typeof existingWindowOnClick === 'function') {
+        existingWindowOnClick(event);
+    }
+    
+    // Add Video Modal background click logic
+    if (event.target.id === 'video-modal') {
+        closeVideoModal();
+    }
+}
+
 
 
