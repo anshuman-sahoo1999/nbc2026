@@ -227,6 +227,54 @@ nav { background: var(--white); padding: 10px 0; position: sticky; top: 0; z-ind
     color: var(--white);
 }
 
+/* --- TEASER VIDEO POPUP STYLES --- */
+.video-content-custom {
+    background-color: #000; /* Black background for video */
+    padding: 0; /* Remove padding so video fits edges */
+    border: 2px solid var(--accent);
+    width: 90%;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.video-close {
+    color: var(--white);
+    background-color: var(--primary);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -15px;
+    right: -15px;
+    opacity: 1;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.video-close:hover {
+    background-color: var(--accent);
+    color: var(--text-dark);
+    transform: rotate(90deg);
+}
+
+/* Responsive Video Container (16:9 Aspect Ratio) */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* Mobile Adjustment */
 @media (max-width: 768px) {
     .btn-proposal {
@@ -252,4 +300,5 @@ nav { background: var(--white); padding: 10px 0; position: sticky; top: 0; z-ind
     .footer-logo.large-logo { margin: 0 auto 10px; }
     .partners-row { grid-template-columns: 1fr; gap: 20px; }
     .partner-img-wrapper { height: 90px; max-width: 200px; margin: 0 auto; }
+
 }
